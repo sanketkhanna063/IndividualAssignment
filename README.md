@@ -3,7 +3,7 @@
 ## Project Title
 Lab 6 - Data Merging and Analysis with Pandas
 
-## Short Description
+## Description
 This project involves analyzing and merging datasets using the pandas library in Python. The code demonstrates various join operations such as left joins, inner joins, and outer joins to enrich datasets, detect missing values, and identify differences between datasets.
 
 ## Getting Started
