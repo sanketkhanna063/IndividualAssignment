@@ -1,114 +1,101 @@
-# **Data 1202: Data Analytics Tools**  
-## **Lab 6 - Data Merging and Analysis with Pandas**  
+# Data 1202: Data Analytics Tools
 
-### Project Overview
-This project explores **data manipulation using Pandas**, focusing on **merging datasets, handling missing values, and filtering data**. The dataset includes **movies, financials, taglines, genres, and actor lists from the Iron Man movie series**. The primary objective is to understand different types of joins (**left, right, inner, outer**) and their impact on datasets.  
+## Project Title
+Lab 6 - Data Merging and Analysis with Pandas
 
----
+## Short Description
+This project involves analyzing and merging datasets using the pandas library in Python. The code demonstrates various join operations such as left joins, inner joins, and outer joins to enrich datasets, detect missing values, and identify differences between datasets.
 
-## **Getting Started**  
+## Getting Started
 
-### **Prerequisites**  
-Before running the code, ensure you have the following installed:  
+### Prerequisites
+- Python 3.x
+- pandas library
+- CSV files: `movies.csv`, `financials.csv`, `taglines.csv`, `movie_to_genres.csv`, `iron1.csv`, `iron2.csv`
 
-- **Python 3.x**  
-- **Pandas library**  
-
-To install Pandas, run:  
-```bash
-pip install pandas
-```
-
-### **Installing**  
-1. **Clone the repository:**  
-   ```bash
+### Installing
+1. Clone the repository:
+   ```sh
    git clone <repository_link>
-   cd <repository_name>
    ```
-2. **Ensure the required CSV files are present:**  
-   - `movies.csv`  
-   - `financials.csv`  
-   - `taglines.csv`  
-   - `movie_to_genres.csv`  
-   - `iron1.csv`  
-   - `iron2.csv`  
+2. Navigate to the project directory:
+   ```sh
+   cd <project_directory>
+   ```
+3. Install the required dependencies:
+   ```sh
+   pip install pandas
+   ```
 
----
-
-## **Project Details**  
-
-### **1. Merging Movies and Financial Data**  
-- **Loads the `movies.csv` and `financials.csv` datasets**  
-- **Performs a left join on `id` to merge financials into the movies dataset**  
-- **Counts the number of missing values in financial data**  
-- **Displays the first few rows of the merged dataset**  
-
-### **2. Comparing Left Join vs. Inner Join with Taglines**  
-- **Loads the `taglines.csv` dataset**  
-- **Performs both left and inner joins with `movies.csv`**  
-- **Counts the number of missing taglines**  
-
-### **3. Filtering Science Fiction Movies**  
-- **Loads the `movie_to_genres.csv` dataset**  
-- **Filters for movies in the "Science Fiction" genre**  
-- **Merges with movies dataset to get additional details**  
-
-### **4. Finding Actors in Only One of the Iron Man Movies**  
-- **Loads actor lists for Iron Man 1 (`iron1.csv`) and Iron Man 2 (`iron2.csv`)**  
-- **Uses an outer join to find actors who were in one movie but not the other**  
-
----
-
-## **Running the Code**  
-To execute the script, use the following command in the terminal:  
-
-```bash
-python script.py
+## Running the Code
+Run the Python script to process and analyze the datasets:
+```sh
+python lab6.py
 ```
 
----
+## Breakdown of Code
 
-## **Running the Tests**  
+### 1. Merging Movies and Financial Data
+- Loads movie data (`movies.csv`) and financial data (`financials.csv`).
+- Performs a left join to merge financial information with movie details.
+- Identifies missing financial data.
 
-To verify the correctness of the script, you can include test cases such as:  
+```python
+import pandas as pd
+movies = pd.read_csv('movies.csv')
+movies.head()
+financials = pd.read_csv('financials.csv')
+financials.head()
+movies_financials = movies.merge(financials, on='id', how='left')
+number_of_missing_fin = movies_financials['budget'].isnull().sum()
+print(f"Number of movies missing rows: {number_of_missing_fin}")
+```
 
-1. **Checking if datasets load correctly:**  
-   ```python
-   assert not movies.empty, "Movies dataset failed to load!"
-   assert not financials.empty, "Financials dataset failed to load!"
-   ```
+### 2. Enriching Movies with Taglines
+- Performs a left join to merge movie titles with taglines.
+- Compares the results with an inner join to observe missing data.
 
-2. **Verifying merge operations:**  
-   ```python
-   assert 'budget' in movies_financials.columns, "Financials merge unsuccessful!"
-   assert 'tagline' in movies_left.columns, "Tagline merge unsuccessful!"
-   ```
+```python
+movies = pd.read_csv("movies.csv")
+taglines = pd.read_csv("taglines.csv")
+movies_left = movies.merge(taglines, on='id', how='left')
+movies_inner = movies.merge(taglines, on='id', how='inner')
+missing_taglines = movies_left['tagline'].isnull().sum()
+print(f"Number of movies missing a tagline: {missing_taglines}")
+```
 
-3. **Ensuring missing values are correctly counted:**  
-   ```python
-   assert missing_values >= 0, "Error in missing data count!"
-   ```
+### 3. Filtering Science Fiction Movies
+- Extracts movies of the "Science Fiction" genre.
+- Merges genre data with the movies dataset to get complete information.
 
----
+```python
+genres = pd.read_csv("movie_to_genres.csv")
+sci_fi_only = genres[(genres["genre"] == "Science Fiction")].merge(movies, left_on="movie_id", right_on="id", how="left")
+print(sci_fi_only.head())
+```
 
-## **Deployment**  
-This project is for **educational purposes** and is not intended for production use.  
+### 4. Identifying Unique Actors between Two Movies
+- Loads actor data for Iron Man 1 and Iron Man 2.
+- Performs an outer join to find actors who appeared in only one of the two movies.
 
----
+```python
+iron_1_actor = pd.read_csv("iron1.csv")
+iron_2_actor = pd.read_csv("iron2.csv")
+iron_1_and_2 = iron_1_actor.merge(iron_2_actor, on='id', how='outer', suffixes=('_1','_2'))
+m = ((iron_1_and_2['name_1'].isnull()) | (iron_1_and_2['name_2'].isnull()))      
+print(iron_1_and_2[m])
+```
 
-## **Author**  
-**[Your Name]**  
-- GitHub: [Your GitHub Profile]  
-- Email: [Your Email]  
+## Deployment
+This project is intended for educational purposes and can be executed in a local Python environment.
 
----
+## Author
+Your Name
 
-## **License**  
-This project is licensed under the **MIT License**.  
+## License
+This project is licensed under the MIT License.
 
----
-
-## **Acknowledgments**  
-- **Pandas Documentation:** [pandas.pydata.org](https://pandas.pydata.org/)  
-- **Dataset Sources:** Educational datasets on movies and actors  
+## Acknowledgments
+- Data sourced from open movie datasets.
+- Pandas documentation for merge operations.
 
