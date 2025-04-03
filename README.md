@@ -9,7 +9,7 @@ This project involves analyzing and merging datasets using the pandas library in
 ## Getting Started
 
 ### Prerequisites
-- Python 3.x
+- Python
 - pandas library
 - CSV files: `movies.csv`, `financials.csv`, `taglines.csv`, `movie_to_genres.csv`, `iron1.csv`, `iron2.csv`
 
@@ -27,7 +27,7 @@ This project involves analyzing and merging datasets using the pandas library in
    pip install pandas
    ```
 
-## Running the Code
+## Running the tests
 Run the Python script to process and analyze the datasets:
 ```sh
 python lab6.py
@@ -51,7 +51,7 @@ number_of_missing_fin = movies_financials['budget'].isnull().sum()
 print(f"Number of movies missing rows: {number_of_missing_fin}")
 ```
 
-### 2. Enriching Movies with Taglines
+### 2. Checking Movies with Taglines
 - Performs a left join to merge movie titles with taglines.
 - Compares the results with an inner join to observe missing data.
 
@@ -87,13 +87,18 @@ print(iron_1_and_2[m])
 ```
 
 ## Deployment
-This project is intended for educational purposes and can be executed in a local Python environment.
+This project can be executed in a local Python environment. This project was built using:
+- Python - Programming language
+- Pandas - Library used for data manipulation
+- Jupyter Notebook
+- Git - Version control
+- GitHub - Repository hosting
 
 ## Author
-Your Name
+Sanket Khanna ( 100950870 )
 
 ## License
-This project is licensed under the MIT License.
+This project is not licensed.
 
 ## Acknowledgments
 - Data sourced from open movie datasets.
