@@ -16,11 +16,11 @@ This project involves analyzing and merging datasets using the pandas library in
 ### Installing
 1. Clone the repository:
    ```sh
-   git clone <repository_link>
+   git clone https://github.com/sanketkhanna063/IndividualAssignment.git
    ```
 2. Navigate to the project directory:
    ```sh
-   cd <project_directory>
+   cd IndividualAssignment
    ```
 3. Install the required dependencies:
    ```sh
