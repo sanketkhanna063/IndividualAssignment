@@ -7,7 +7,9 @@ Before running the Python script, ensure you have the following installed:
   - Pandas library
 
 You can install the Pandas library using:
+'''
 pip install pandas
+'''
 # Installing
 - Clone this repository using:
 git clone <repository_link>
