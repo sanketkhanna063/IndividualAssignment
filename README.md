@@ -101,6 +101,6 @@ Sanket Khanna ( 100950870 )
 This project is not licensed.
 
 ## Acknowledgments
-- Data sourced from open movie datasets.
+- Data sourced from open movie datasets from DATA1202 for Data Analytics.
 - Pandas documentation for merge operations.
 
