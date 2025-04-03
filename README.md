@@ -1,7 +1,7 @@
 # **Data 1202: Data Analytics Tools**  
 ## **Lab 6 - Data Merging and Analysis with Pandas**  
 
-### **Project Overview**  
+### Project Overview
 This project explores **data manipulation using Pandas**, focusing on **merging datasets, handling missing values, and filtering data**. The dataset includes **movies, financials, taglines, genres, and actor lists from the Iron Man movie series**. The primary objective is to understand different types of joins (**left, right, inner, outer**) and their impact on datasets.  
 
 ---
